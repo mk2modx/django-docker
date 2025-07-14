@@ -1,4 +1,5 @@
 # Django on Docker
+Used this guide  as a reference: [Dockerizing Django with PostgreSQL, Gunicorn, and Nginx](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/).
 
 This is a Django application containerized using Docker, PostgreSQL as the database, Gunicorn as the WSGI server, and Nginx as the reverse proxy.
 

@@ -134,3 +134,25 @@ For deployment instructions, refer to the [Dockerizing Django with PostgreSQL, G
 - `.gitignore`: Git ignore file
 - `docker-compose.yml`: Docker Compose file for development
 - `docker-compose.prod.yml`: Docker Compose file for production
+
+
+## Tear Down and Rebuilding
+
+``` bash 
+docker-compose -f docker-compose.prod.yml down
+docker-compose -f docker-compose.prod.yml build
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+## Create migrations
+
+``` bash
+docker-compose run app python manage.py makemigrations
+docker-compose run app python manage.py migrate
+```
+
+## Create superuser
+
+``` bash
+docker-compose run app python manage.py createsuperuser
+```

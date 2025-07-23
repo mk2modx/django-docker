@@ -1,13 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}File Upload - My Django Blog{% endblock %}
+
 {% block content %}
+<div class="upload-container">
+    <h1 style="color: #2c3e50; margin-bottom: 2rem; text-align: center;">File Upload</h1>
+    
+    <div class="upload-form" style="max-width: 500px; margin: 0 auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <form action="{% url "upload" %}" method="post" enctype="multipart/form-data" style="text-align: center;">
+            {% csrf_token %}
+            <div style="margin-bottom: 1rem;">
+                <label for="image_file" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Choose an image file:</label>
+                <input type="file" name="image_file" id="image_file" style="margin-bottom: 1rem; padding: 0.5rem; border: 2px solid #ddd; border-radius: 4px; width: 100%;">
+            </div>
+            <input type="submit" value="Upload File" style="background-color: #3498db; color: white; padding: 0.75rem 2rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">
+        </form>
 
-  <form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="image_file">
-    <input type="submit" value="submit" />
-  </form>
-
-  {% if image_url %}
-    <p>File uploaded at: <a href="{{ image_url }}">{{ image_url }}</a></p>
-  {% endif %}
-
+        {% if image_url %}
+            <div style="margin-top: 2rem; text-align: center;">
+                <h3 style="color: #27ae60; margin-bottom: 1rem;">File uploaded successfully!</h3>
+                <p>File uploaded at: <a href="{{ image_url }}" style="color: #3498db; text-decoration: none;">{{ image_url }}</a></p>
+                <img src="{{ image_url }}" alt="Uploaded image" style="max-width: 100%; height: auto; margin-top: 1rem; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

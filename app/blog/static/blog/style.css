@@ -1,0 +1,51 @@
+/* Blog specific styles */
+.post-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
+
+.post-card h2 a:hover {
+    color: #3498db !important;
+}
+
+.pagination .step-links a:hover {
+    background-color: #3498db;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.blog-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.blog-header h1 {
+    color: white !important;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.blog-header p {
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 1.2rem;
+}
+
+.no-posts {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white !important;
+    border-radius: 8px;
+}
+
+.no-posts h2,
+.no-posts p {
+    color: white !important;
+}

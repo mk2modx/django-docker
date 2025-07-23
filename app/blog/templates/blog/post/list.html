@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - A-ight{% endblock %}
+
+{% block content %}
+<div class="blog-header">
+    <h1 style="color: #2c3e50; margin-bottom: 2rem; text-align: center;">Welcome to A-ight</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 3rem;">A-i-iiight is a random A-i(ght) blog</p>
+</div>
+
+<div class="posts-container">
+    {% if posts %}
+        {% for post in posts %}
+            <article class="post-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 2rem; padding: 1.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                {% if post.image %}
+                    <div class="post-image" style="margin-bottom: 1rem;">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+                    </div>
+                {% endif %}
+                <h2 style="color: #2c3e50; margin-bottom: 1rem;">
+                    <a href="{{ post.get_absolute_url }}" style="text-decoration: none; color: inherit;">{{ post.title }}</a>
+                </h2>
+                <div class="post-meta" style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                    <span>By {{ post.author.first_name }} {{ post.author.last_name }}</span>
+                    <span> | </span>
+                    <span>{{ post.created|date:"F d, Y" }}</span>
+                    <span> | </span>
+                    <span class="category-tag" style="background: #3498db; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">{{ post.get_category_display }}</span>
+                </div>
+                <div class="post-excerpt" style="color: #444; line-height: 1.6;">
+                    {{ post.content|truncatewords:30|linebreaks }}
+                </div>
+                <a href="{{ post.get_absolute_url }}" style="color: #3498db; text-decoration: none; font-weight: bold;">Read more →</a>
+            </article>
+        {% endfor %}
+        
+        <!-- Pagination -->
+        <div class="pagination" style="text-align: center; margin-top: 2rem;">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a href="?page=1" style="color: #3498db; text-decoration: none; margin: 0 5px;">&laquo; first</a>
+                    <a href="?page={{ posts.previous_page_number }}" style="color: #3498db; text-decoration: none; margin: 0 5px;">previous</a>
+                {% endif %}
+
+                <span class="current" style="margin: 0 10px; font-weight: bold;">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                </span>
+
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}" style="color: #3498db; text-decoration: none; margin: 0 5px;">next</a>
+                    <a href="?page={{ posts.paginator.num_pages }}" style="color: #3498db; text-decoration: none; margin: 0 5px;">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% else %}
+        <div class="no-posts" style="text-align: center; padding: 3rem; color: #666;">
+            <h2>No blog posts yet</h2>
+            <p>Check back later for new content!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

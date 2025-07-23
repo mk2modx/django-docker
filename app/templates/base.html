@@ -44,6 +44,19 @@
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-image {
+            height: 32px;
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         
         .nav-menu {
@@ -109,7 +122,10 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-container">
-                <a href="{% url 'blog:post_list' %}" class="logo">A-ight</a>
+                <a href="{% url 'blog:post_list' %}" class="logo">
+                    <img src="{% static 'images/logo.png' %}" alt="A-ight Logo" class="logo-image" onerror="this.style.display='none'">
+                    <span class="logo-text">A-ight</span>
+                </a>
                 <ul class="nav-menu">
                     <li><a href="{% url 'blog:post_list' %}" {% if request.resolver_match.url_name == 'post_list' %}class="active"{% endif %}>Home</a></li>
                     <li><a href="{% url 'blog:whats_new' %}" {% if request.resolver_match.url_name == 'whats_new' %}class="active"{% endif %}>What's New</a></li>
